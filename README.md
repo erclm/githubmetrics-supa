@@ -60,15 +60,15 @@ CREATE TABLE repos (
   id SERIAL PRIMARY KEY,
   name TEXT NOT NULL,
   owner TEXT NOT NULL,
-  fullName TEXT NOT NULL,
+  fullname TEXT NOT NULL,
   stars INTEGER NOT NULL DEFAULT 0,
   forks INTEGER NOT NULL DEFAULT 0,
   issues INTEGER NOT NULL DEFAULT 0,
-  mainLanguage TEXT,
-  healthScore INTEGER NOT NULL DEFAULT 0,
-  activityLevel TEXT,
-  trendingFactor INTEGER NOT NULL DEFAULT 0,
-  createdAt TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+  mainlanguage TEXT,
+  healthscore INTEGER NOT NULL DEFAULT 0,
+  activitylevel TEXT,
+  trendingfactor INTEGER NOT NULL DEFAULT 0,
+  createdat TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 ```
 

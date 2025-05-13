@@ -23,7 +23,7 @@ function App() {
             const { data, error } = await supabase
                 .from('repos')
                 .select('*')
-                .order('createdAt', { ascending: false });
+                .order('createdat', { ascending: false });
 
             if (error) throw error;
 
@@ -80,15 +80,15 @@ function App() {
             return {
                 name: data.name,
                 owner: data.owner.login,
-                fullName: data.full_name,
+                fullname: data.full_name,
                 stars: data.stargazers_count,
                 forks: data.forks_count,
                 issues: data.open_issues_count,
-                mainLanguage: data.language || 'Unknown',
-                healthScore: Math.round((1 - (data.open_issues_count / (data.stargazers_count + 1))) * 100),
-                activityLevel: data.pushed_at ? `${Math.round((Date.now() - new Date(data.pushed_at)) / (1000 * 60 * 60 * 24))} days` : 'Unknown',
-                trendingFactor: Math.round((data.stargazers_count / (data.forks_count + 1)) * 10),
-                createdAt: new Date().toISOString(),
+                mainlanguage: data.language || 'Unknown',
+                healthscore: Math.round((1 - (data.open_issues_count / (data.stargazers_count + 1))) * 100),
+                activitylevel: data.pushed_at ? `${Math.round((Date.now() - new Date(data.pushed_at)) / (1000 * 60 * 60 * 24))} days` : 'Unknown',
+                trendingfactor: Math.round((data.stargazers_count / (data.forks_count + 1)) * 10),
+                createdat: new Date().toISOString(),
             };
         } catch (err) {
             throw new Error(`Failed to fetch repository data: ${err.message}`);
@@ -199,7 +199,7 @@ function App() {
                                     <div>
                                         <h2 className="text-xl font-semibold text-gray-800">{repo.name}</h2>
                                         <p className="text-sm text-gray-500 mt-1">
-                                            {repo.mainLanguage} • Added {new Date(repo.createdAt).toLocaleDateString()}
+                                            {repo.mainlanguage} • Added {new Date(repo.createdat).toLocaleDateString()}
                                         </p>
                                     </div>
                                     <button
@@ -243,7 +243,7 @@ function App() {
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <span>💻</span>
-                                        <span className="font-medium">{repo.mainLanguage}</span>
+                                        <span className="font-medium">{repo.mainlanguage}</span>
                                     </div>
                                 </div>
 
@@ -251,9 +251,9 @@ function App() {
                                     <div className="text-center p-3 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg">
                                         <div className="text-sm text-blue-600 mb-1 font-medium">Health</div>
                                         <div className="text-2xl font-bold text-blue-700">
-                                            {repo.healthScore}
+                                            {repo.healthscore}
                                             <span className="text-lg ml-1">
-                                                {repo.healthScore > 80 ? '💪' : repo.healthScore > 50 ? '👍' : '🤔'}
+                                                {repo.healthscore > 80 ? '💪' : repo.healthscore > 50 ? '👍' : '🤔'}
                                             </span>
                                         </div>
                                     </div>
@@ -261,9 +261,9 @@ function App() {
                                     <div className="text-center p-3 bg-gradient-to-br from-green-50 to-green-100 rounded-lg">
                                         <div className="text-sm text-green-600 mb-1 font-medium">Activity</div>
                                         <div className="text-lg font-bold text-green-700">
-                                            {repo.activityLevel.split(' ')[0]}
+                                            {repo.activitylevel.split(' ')[0]}
                                             <span className="text-lg ml-1">
-                                                {repo.activityLevel.split(' ')[1]}
+                                                {repo.activitylevel.split(' ')[1]}
                                             </span>
                                         </div>
                                     </div>
@@ -271,9 +271,9 @@ function App() {
                                     <div className="text-center p-3 bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg">
                                         <div className="text-sm text-purple-600 mb-1 font-medium">Trending</div>
                                         <div className="text-2xl font-bold text-purple-700">
-                                            {repo.trendingFactor}
+                                            {repo.trendingfactor}
                                             <span className="text-lg ml-1">
-                                                {repo.trendingFactor > 100 ? '🚀' : repo.trendingFactor > 50 ? '📈' : '📊'}
+                                                {repo.trendingfactor > 100 ? '🚀' : repo.trendingfactor > 50 ? '📈' : '📊'}
                                             </span>
                                         </div>
                                     </div>
